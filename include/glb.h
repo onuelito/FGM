@@ -4,16 +4,18 @@
 #ifndef __DECODER_GLB__
 #define __DECODER_GLB__
 
+#include <stdint.h>
+
 struct BufferSizes {
-    int position;
-    int normals;
-    int texcoords;
-    int indices;
+    uint64_t position;
+    uint64_t normals;
+    uint64_t texcoords;
+    uint64_t indices;
 };
 
 extern int buffer_position;
 
-unsigned char *GLB_GetBufferData(int *num_meshes, struct BufferSizes**, const char *);
+unsigned char *GLB_GetBufferData(uint16_t *num_meshes, struct BufferSizes**, const char *);
 
 #endif
 

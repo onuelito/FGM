@@ -1,2 +1,14 @@
-FGM is a series of binary data that follows a specific convention in order to be rapidly parsed.
-The structure is : POSITION, NORMALS, TEXCOORDS, INDICES. After that bufferdata is present.
+=== The FGM Format ===
+
+ FGM is a custom file format that contains binary data from a 3D mesh for fast loading.
+ Using this tool you can convert a .glb file into a binary FGM file. The structure of
+ the FGM file is the following :
+
+    [number of meshes] [position] [normals] [texcoords] [indices]   ...       [buffer]
+         2 bytes         8 bytes    8 bytes   8 bytes    8 bytes  (mesh n)     
+
+ The first 2 bytes which are a 16-bit unsigned integer represent the number of meshes.
+ Following these are the attributes of each mesh that will be repeated in "mesh n" if
+ exceeding 1 to represent the other meshes buffer sizes. Finallt the last part, the
+ buffer, contains every information about the attributes of the meshes that can be
+ typecasted when extracted.

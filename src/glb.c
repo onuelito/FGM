@@ -115,7 +115,7 @@ static void *read_buffer(GLB_Attribute mattr, unsigned char* bin_data)
 
 }
 
-static unsigned char *get_mesh(unsigned char *buffer, struct BufferSizes **sizes, int index, gJSON *gson, 
+static unsigned char *get_mesh(unsigned char *buffer, struct BufferSizes **sizes, uint16_t index, gJSON *gson, 
                                unsigned char* bin_data)
 {
     /* process mesh attribute identified by index */
@@ -186,7 +186,7 @@ static unsigned char *get_mesh(unsigned char *buffer, struct BufferSizes **sizes
     return buffer;
 }
 
-static unsigned char *get_mesh_from_gjson(int *num_meshes, struct BufferSizes **sizes, gJSON *gson, 
+static unsigned char *get_mesh_from_gjson(uint16_t *num_meshes, struct BufferSizes **sizes, gJSON *gson, 
                                           unsigned char* bin_data)
 {
     /*
@@ -288,7 +288,7 @@ fail:
     return NULL;
 }
 
-static unsigned char *read_glb(int *num_meshes, struct BufferSizes **sizes, const char*path)
+static unsigned char *read_glb(uint16_t *num_meshes, struct BufferSizes **sizes, const char*path)
 {
     /* there should only be 2 chunks in the GLB file,
      * JSON (mandatory) and BIN (chunk) optional but mandatory
@@ -371,7 +371,7 @@ fail:
 }
 
 
-unsigned char *GLB_GetBufferData(int *num_meshes, struct BufferSizes **sizes, const char *path)
+unsigned char *GLB_GetBufferData(uint16_t *num_meshes, struct BufferSizes **sizes, const char *path)
 {
     return read_glb(num_meshes, sizes, path);
 }

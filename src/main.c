@@ -14,7 +14,7 @@
 
 void mesh_info(struct BufferSizes sizes)
 {
-    printf("==BUFFER SIZES ==\nPosition: %d\nNormals: %d\nIndices: %d\nTexcoords: %d\n\n",
+    printf("==BUFFER SIZES ==\nPosition: %ld\nNormals: %ld\nIndices: %ld\nTexcoords: %ld\n\n",
             sizes.position, sizes.normals, sizes.indices, sizes.texcoords);
 }
 
@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
     char *path = argv[1];
     char *fname = argv[2];
 
-    int num_meshes = 0;
+    uint16_t num_meshes = 0;
     struct BufferSizes *sizes = NULL;
     unsigned char *buffer = GLB_GetBufferData(&num_meshes, &sizes, path);
 
@@ -38,6 +38,7 @@ int main(int argc, char *argv[])
     }
 
     FILE *fp = fopen(fname, "wb");
+    fwrite(&num_meshes, sizeof(uint16_t), 1, fp);
     for (int i =0; i < num_meshes; i++) {
         fwrite(&sizes[i].position, sizeof(uint64_t), 1, fp);
         fwrite(&sizes[i].normals, sizeof(uint64_t), 1, fp);

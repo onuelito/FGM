@@ -1,0 +1,2 @@
+FGM is a series of binary data that follows a specific convention in order to be rapidly parsed.
+The structure is : POSITION, NORMALS, TEXCOORDS, INDICES. After that bufferdata is present.
